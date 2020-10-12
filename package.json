@@ -1,0 +1,68 @@
+{
+  "name": "redis-recovery",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "DEBUG=*,-nodemon:*,-nodemon nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "redis": "^3.0.2",
+    "~": "file:."
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-chai-expect": "^2.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "engineStrict": true,
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "es2020": true,
+      "mocha": true
+    },
+    "extends": [
+      "standard",
+      "plugin:chai-expect/recommended",
+      "plugin:promise/recommended",
+      "plugin:security/recommended",
+      "plugin:mocha/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "chai-expect",
+      "promise",
+      "security",
+      "mocha"
+    ],
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "./src/**/*.test.js",
+          "./scripts/**/*.js"
+        ],
+        "rules": {
+          "no-unused-expressions": "off",
+          "security/detect-non-literal-fs-filename": "off"
+        }
+      }
+    ]
+  }
+}

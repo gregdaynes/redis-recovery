@@ -67,7 +67,8 @@ function scan (cursor = 0) {
     .then(([nextCursor, matchedKeys]) => {
       matchedKeys.forEach((key) => broadcast('keyMatch', { key }))
 
-      if (nextCursor === 0) return broadcast('done')
+      // nextCursor returned from scan is a string not an integer
+      if (nextCursor === '0') return broadcast('done')
 
       return scan(nextCursor)
     })
@@ -94,8 +95,8 @@ function getData ({ key }) {
 }
 
 function validate ({ key, data }) {
-  if (data.timestamp < timestampRange.start) return
-  if (data.timestamp > timestampRange.end) return
+  if (data.timestamp < timestampRange.start || data.timestamp > timestampRange.end) return
+  console.log('valid date range', data.timestamp)
 
   broadcast('validateData', { key, data })
 }
